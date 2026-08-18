@@ -1,4 +1,18 @@
-# MailerQ Handlebars Plugin
+# Mailer-Q-Handlebars
+
+[![npm version](https://img.shields.io/npm/v/mailer-q-handlebars.svg)](https://www.npmjs.com/package/mailer-q-handlebars)
+[![npm downloads](https://img.shields.io/npm/dm/mailer-q-handlebars.svg)](https://www.npmjs.com/package/mailer-q-handlebars)
+[![CI](https://github.com/Mailer-Q/Mailer-Q-Handlebars/actions/workflows/ci.yml/badge.svg)](https://github.com/Mailer-Q/Mailer-Q-Handlebars/actions/workflows/ci.yml)
+[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-3178C6.svg)](https://www.typescriptlang.org/)
+[![node](https://img.shields.io/node/v/mailer-q-handlebars.svg)](https://nodejs.org/)
+[![license](https://img.shields.io/npm/l/mailer-q-handlebars.svg)](./LICENSE)
+
+A [Handlebars](https://handlebarsjs.com/) template renderer for
+[MailerQ](https://github.com/Mailer-Q/Mailer-Q). It lets MailerQ render email bodies from
+`.hbs` template files instead of inline HTML.
+
+A MailerQ renderer is any function `(templateFileName, locals) => htmlString`. This package
+provides one backed by Handlebars.
 
 ## Installation
 
@@ -8,26 +22,54 @@ npm install mailer-q-handlebars --save
 
 ## Usage
 
-- This plugin is an extension of the [MailerQ](https://github.com/mailer-q/mailer-q) module for sending email.
-- It enables MailerQ to use Handlebars templating to send email.
-- To use this extension, simply require the module and call the resulting function with the path to your email templates as an argument.
-
-Example configuration:
+Call the module with the directory that holds your email templates, then pass the result as
+MailerQ's `renderer` option:
 
 ```javascript
 const path = require("path");
 const MailerQ = require("mailer-q").default;
 // or, with ESM / TypeScript: import MailerQ from "mailer-q";
-const MailerQHbs = require("mailer-q-handlebars");
+const MailerQHandlebars = require("mailer-q-handlebars");
 
 const options = {
-  ...otherOptionsHere,
-  renderer: MailerQHbs(path.join(__dirname, "./email_templates")),
+  // ...other MailerQ options
+  renderer: MailerQHandlebars(path.join(__dirname, "./email_templates")),
 };
 
 module.exports = MailerQ(options);
 ```
 
+Then reference a template by file name when building a message, passing template variables
+through `locals`:
+
+```javascript
+MailerQ.contents({
+  to: "recipient@example.com",
+  subject: "Welcome!",
+  templateFileName: "welcome.hbs",
+  locals: { name: "Ada" },
+}).deliverNow();
+```
+
+`email_templates/welcome.hbs`:
+
+```html
+<h1>Welcome, {{name}}!</h1>
+```
+
 > **Requires MailerQ v3+.** In v2, MailerQ was created with `require("mailer-q")()`
 > and configured via `.config(options)`. See the
 > [MailerQ v3 upgrade notes](https://github.com/Mailer-Q/Mailer-Q#upgrading-from-v2).
+
+## Development
+
+This package is written in TypeScript and compiled to `dist/` with `tsc`.
+
+```bash
+npm run build   # compile TypeScript to dist/
+npm run lint    # eslint
+```
+
+## License
+
+[MIT](./LICENSE)

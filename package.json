@@ -1,22 +1,46 @@
 {
   "name": "mailer-q-handlebars",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mailer-q/mailer-q-handlebars"
+    "url": "git+https://github.com/Mailer-Q/Mailer-Q-Handlebars.git"
   },
-  "description": "Handlebars renderer for the MailerQ plugin",
-  "main": "index.js",
-  "author": "Arun Sood",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^7.27.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.3",
-    "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.3.0"
+  "bugs": {
+    "url": "https://github.com/Mailer-Q/Mailer-Q-Handlebars/issues"
   },
+  "homepage": "https://github.com/Mailer-Q/Mailer-Q-Handlebars#readme",
+  "description": "Handlebars template renderer for the MailerQ mailer queue",
+  "keywords": [
+    "mailer-q",
+    "handlebars",
+    "email",
+    "template",
+    "renderer",
+    "nodemailer"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Aaron Sood",
+  "license": "MIT",
   "dependencies": {
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
   }
 }
