@@ -57,18 +57,19 @@ MailerQ.contents({
 <h1>Welcome, {{name}}!</h1>
 ```
 
-> **Requires MailerQ v3+.** In v2, MailerQ was created with `require("mailer-q")()`
-> and configured via `.config(options)`. See the
-> [MailerQ v3 upgrade notes](https://github.com/Mailer-Q/Mailer-Q#upgrading-from-v2).
-
 ## Development
 
 This package is written in TypeScript and compiled to `dist/` with `tsc`.
 
 ```bash
 npm run build   # compile TypeScript to dist/
+npm test        # run the Vitest suite
 npm run lint    # eslint
 ```
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for the notable changes in each release.
 
 ## License
 
