@@ -26,7 +26,7 @@ All notable changes to this project are documented here. The format is based on
 - Pairs with MailerQ v3. The renderer contract — `(templateFileName, locals) => htmlString`
   — is unchanged, but the README usage examples target the v3 factory API. In v2, MailerQ
   was created with `require("mailer-q")()` and configured via `.config(options)`; see the
-  [MailerQ v3 upgrade notes](https://github.com/Mailer-Q/Mailer-Q#upgrading-from-v2).
+  [MailerQ changelog](https://github.com/Mailer-Q/Mailer-Q/blob/master/CHANGELOG.md).
 
 ## [2.0.0] - 2024
 
