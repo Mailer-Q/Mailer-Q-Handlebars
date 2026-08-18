@@ -34,6 +34,9 @@ jobs:
       - name: Lint
         run: yarn lint
 
+      - name: Test
+        run: yarn test
+
       # prepublishOnly runs the build; --provenance requires npm >= 9.5 (bundled with Node 20)
       - name: Publish to npm
         run: npm publish --provenance --access public
